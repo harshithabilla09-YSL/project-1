@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172b4d">
+  <title>Campus Complaint and Grievance Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Campus Grievance home">
+      <span class="brand-mark">CG</span>
+      <span><strong>Campus Grievance</strong><small>Complaint &amp; Grievance Management System</small></span>
+    </a>
+    <div class="header-right"><span id="sessionLabel" class="session-label">Not signed in</span><button id="logoutBtn" class="btn btn-outline hidden" type="button">Log out</button></div>
+  </header>
+
+  <main class="container">
+    <section id="authView" class="auth-layout">
+      <div class="hero">
+        <span class="eyebrow">A BETTER CAMPUS STARTS WITH BEING HEARD</span>
+        <h1>Report an issue.<br><span>Track the resolution.</span></h1>
+        <p>A simple, organized way for students to submit campus complaints and follow their progress.</p>
+        <div class="hero-points"><div><span>01</span><p>Submit a complaint securely</p></div><div><span>02</span><p>Receive a unique tracking ID</p></div><div><span>03</span><p>Follow status updates</p></div></div>
+      </div>
+      <section class="panel auth-panel">
+        <div class="tabs" role="tablist"><button id="loginTab" class="tab active" type="button" role="tab">Log in</button><button id="signupTab" class="tab" type="button" role="tab">Create account</button></div>
+        <h2 id="authHeading">Welcome back</h2><p id="authSubtitle" class="muted">Log in to view and manage your complaints.</p>
+        <form id="authForm">
+          <div class="field"><label for="authEmail">College email</label><input id="authEmail" type="email" autocomplete="email" maxlength="254" required placeholder="you@example.com"></div>
+          <div class="field"><label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></div>
+          <div id="confirmPasswordField" class="field hidden"><label for="confirmPassword">Confirm password</label><input id="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Re-enter your password"></div>
+          <button id="authSubmit" class="btn btn-primary full" type="submit">Log in</button>
+          <p id="authMessage" class="form-message" aria-live="polite"></p>
+        </form>
+        <p class="tiny-note">For your college project demonstration. Use a test account and never share your password.</p>
+      </section>
+    </section>
+
+    <section id="appView" class="hidden">
+      <div class="welcome-row"><div><p class="eyebrow">STUDENT SUPPORT DESK</p><h1 id="welcomeTitle">Your dashboard</h1><p id="welcomeText" class="muted">Submit a complaint and check its progress.</p></div><span id="roleBadge" class="role-badge">STUDENT</span></div>
+      <section class="stats-grid" aria-label="Complaint statistics">
+        <article class="stat-card"><span class="stat-icon blue">▤</span><span class="stat-label">Total complaints</span><strong id="statTotal">0</strong></article>
+        <article class="stat-card"><span class="stat-icon amber">◷</span><span class="stat-label">Submitted</span><strong id="statSubmitted">0</strong></article>
+        <article class="stat-card"><span class="stat-icon purple">↻</span><span class="stat-label">In progress</span><strong id="statProgress">0</strong></article>
+        <article class="stat-card"><span class="stat-icon green">✓</span><span class="stat-label">Resolved</span><strong id="statResolved">0</strong></article>
+      </section>
+      <div class="content-grid">
+        <section id="submitPanel" class="panel">
+          <div class="panel-heading"><div><h2>Submit a complaint</h2><p class="muted">Tell us what needs attention on campus.</p></div><span class="heading-icon">＋</span></div>
+          <form id="complaintForm">
+            <div class="field"><label for="complaintTitle">Complaint title <span>*</span></label><input id="complaintTitle" maxlength="120" required placeholder="e.g. Projector not working in Room 204"></div>
+            <div class="field"><label for="complaintCategory">Category <span>*</span></label><select id="complaintCategory" required><option value="">Choose a category</option><option>Classroom / Infrastructure</option><option>Hostel</option><option>Transport</option><option>Cleanliness</option><option>Internet / IT</option><option>Fees / Administration</option><option>Academic</option><option>Safety / Security</option><option>Other</option></select></div>
+            <div class="field"><label for="complaintLocation">Location (optional)</label><input id="complaintLocation" maxlength="120" placeholder="e.g. Block A, Room 204"></div>
+            <div class="field"><label for="complaintDescription">Description <span>*</span></label><textarea id="complaintDescription" rows="5" maxlength="2000" required placeholder="Describe the issue clearly. Avoid including passwords or unnecessary personal details."></textarea><small class="char-count" id="descriptionCount">0 / 2000</small></div>
+            <button id="complaintSubmit" class="btn btn-primary full" type="submit">Submit complaint <span aria-hidden="true">→</span></button>
+            <p id="complaintMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </section>
+        <section class="panel list-panel">
+          <div class="panel-heading"><div><h2 id="listHeading">Your complaints</h2><p id="listSubtitle" class="muted">Review your submitted reports and their status.</p></div><button id="refreshBtn" class="icon-button" type="button" title="Refresh complaints" aria-label="Refresh complaints">↻</button></div>
+          <div class="toolbar"><input id="searchInput" class="search-input" type="search" placeholder="Search by ID or title..." aria-label="Search complaints"><select id="statusFilter" aria-label="Filter by status"><option value="">All statuses</option><option>Submitted</option><option>In Progress</option><option>Resolved</option><option>Rejected</option></select></div>
+          <div id="complaintList" class="complaint-list"><div class="loading">Loading complaints…</div></div>
+        </section>
+      </div>
+      <div class="security-note"><span>🔒</span><p>Your account can access only the complaints permitted for your role. If you have an urgent safety concern, contact the appropriate campus authority directly.</p></div>
+    </section>
+    <div id="globalMessage" class="global-message" role="status" aria-live="polite"></div>
+  </main>
+  <footer>Campus Complaint and Grievance Management System <span>·</span> Student mini-project</footer>
+  <script src="app.js"></script>
+</body>
+</html>
